@@ -49,7 +49,7 @@ class Board {
             this.ctx = this.cvs.getContext( '2d' );
 
             // creating on boar click event
-            this.cvs.addEventListener( 'click', this.changePlayerSide );
+            document.addEventListener( 'click', this.changePlayerSide );
 
             // setsUp initial state
             this.setUp();
@@ -113,9 +113,9 @@ class Board {
         this.drawBoard( this.ctx );
 
         // draws particles
-        // this.particles.forEach( particle => {
-        //     particle.draw( this.ctx );
-        // });
+        this.particles.forEach( particle => {
+            particle.draw( this.ctx );
+        });
         
         // draws player
         this.player.draw( this.ctx );
