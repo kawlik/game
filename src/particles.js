@@ -52,7 +52,7 @@ class Wind extends Shape {
         //     }
         // });
 
-        for( let i = 0; i < this.particles; i++ ) {
+        for( let i = 0; i < this.particles.length; i++ ) {
 
             // speed aplay
             this.particles[i].y += this.speed * this.particles[i].speed;
