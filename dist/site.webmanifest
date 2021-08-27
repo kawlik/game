@@ -6,7 +6,7 @@
     "background_color": "#ff5544",
 
     "orientation": "portrait",
-    "display": "fullscreen",
+    "display": "standalone",
 
     "icons": [
         {
