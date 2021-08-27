@@ -39,7 +39,7 @@ const Config = {
         wind: {
 
             color: 'rgba( 0, 0, 0, 0.1 )',
-            count: 30,
+            count: 20,
             r: 300,
         },
 
@@ -47,7 +47,7 @@ const Config = {
         trace: {
 
             color: 0,
-            count: 150,
+            count: 50,
             r: 5,
         },
     },

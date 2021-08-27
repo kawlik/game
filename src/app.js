@@ -49,7 +49,7 @@ class App {
         const animationLoop = () => {
 
             // new animation request
-            // this.requestID = requestAnimationFrame( animationLoop );
+            this.requestID = requestAnimationFrame( animationLoop );
             // this.requestID = setTimeout( animationLoop, 1000 / 60 );
 
             // proper animation draw
@@ -63,9 +63,9 @@ class App {
             if( this.board.isCollision() ) { this.stopAnimate(); }
         }
 
-        // this.requestID = requestAnimationFrame( animationLoop );
+        this.requestID = requestAnimationFrame( animationLoop );
         // this.requestID = setTimeout( animationLoop, 1000 / 60 );
-        this.requestID = setInterval( animationLoop, 1000 / 60 );
+        // this.requestID = setInterval( animationLoop, 1000 / 60 );
     };
 
     stopAnimate = () => {
@@ -80,9 +80,9 @@ class App {
         this.interface.restore();
 
         // cancels next animation frame
-        // cancelAnimationFrame( this.requestID );
+        cancelAnimationFrame( this.requestID );
         // clearTimeout( this.requestID );
-        clearInterval( this.requestID );
+        // clearInterval( this.requestID );
     };
 };
 

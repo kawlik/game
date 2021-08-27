@@ -122,8 +122,8 @@ class Trace extends Shape {
         this.particles.unshift({
             
             x: x + Utility.randIntRange( 0, 20 ) - 10,
-            y: y + this.r + Utility.randIntRange( 0, 10 ) - 5,
-            r: Utility.randIntRange( 0.7 * this.r, 1.2 * this.r ),
+            y: y + this.r + Utility.randIntRange( 10, 50 ),
+            r: Utility.randIntRange( this.r, 1.5 * this.r ),
         });
 
         // particles position update
@@ -171,7 +171,7 @@ class Trace extends Shape {
             if( !this.particles[i] ) { continue; }
             
             ctx.beginPath();
-            ctx.fillStyle = `hsla( ${this.color}, 100%, 50%, 0.8 )`;
+            ctx.fillStyle = `hsla( ${this.color}, 100%, 50%, ${0.2 * ( this.count / i )} )`;
 
             ctx.arc( this.particles[i].x, this.particles[i].y, this.particles[i].r, 0, Math.PI * 2 );
             ctx.fill();
