@@ -113,9 +113,9 @@ class Board {
         this.drawBoard( this.ctx );
 
         // draws particles
-        this.particles.forEach( particle => {
-            particle.draw( this.ctx );
-        });
+        // this.particles.forEach( particle => {
+        //     particle.draw( this.ctx );
+        // });
         
         // draws player
         this.player.draw( this.ctx );
