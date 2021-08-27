@@ -94,14 +94,22 @@ class Board {
 
         // spikes update
         this.spikes.splice( 10 );
-        this.spikes.forEach( spike => {
-            spike.y += this.spikeSpeed;
-        });
+        // this.spikes.forEach( spike => {
+        //     spike.y += this.spikeSpeed;
+        // });
+
+        for( let i = 0; i < this.spikes.length; i++ ) {
+            this.spikes[i].y += this.spikeSpeed;
+        }
 
         // particles update
-        this.particles.forEach( particle => {
-            particle.update( this.player.x, this.player.y, this.spikeSpeed );
-        });
+        // this.particles.forEach( particle => {
+        //     particle.update( this.player.x, this.player.y, this.spikeSpeed );
+        // });
+
+        for( let i = 0; i < this.particles.length; i++ ) {
+            this.particles[i].update( this.player.x, this.player.y, this.spikeSpeed );
+        }
 
         // score counting function
         this.calcScore();
@@ -113,17 +121,25 @@ class Board {
         this.drawBoard( this.ctx );
 
         // draws particles
-        this.particles.forEach( particle => {
-            particle.draw( this.ctx );
-        });
+        // this.particles.forEach( particle => {
+        //     particle.draw( this.ctx );
+        // });
         
+        for( let i = 0; i < this.particles.length; i++ ) {
+            this.particles[i].draw( this.ctx );
+        }
+
         // draws player
         this.player.draw( this.ctx );
         
         // draws spikes
-        this.spikes.forEach( spike => {
-            spike.draw( this.ctx );
-        });
+        // this.spikes.forEach( spike => {
+        //     spike.draw( this.ctx );
+        // });
+
+        for( let i = 0; i < this.spikes.length; i++ ) {
+            this.spikes[i].draw( this.ctx );
+        }
     };
 
     changePlayerSide = () => {
@@ -139,15 +155,25 @@ class Board {
         // collison change
         let collision = false;
         
-        this.spikes.forEach( spike => {
+        // this.spikes.forEach( spike => {
         
-            const R = this.player.r + spike.r;
+        //     const R = this.player.r + spike.r;
         
-            const D = Math.sqrt( ( this.player.x - spike.x )**2 + ( this.player.y - spike.y )**2 );
+        //     const D = Math.sqrt( ( this.player.x - spike.x )**2 + ( this.player.y - spike.y )**2 );
+        
+        //     // collision detected with small offset
+        //     if( D < R - Math.log( R ) ) { collision = true; }
+        // });
+
+        for( let i = 0; i < this.spikes.length; i++ ) {
+            
+            const R = this.player.r + this.spikes[i].r;
+        
+            const D = Math.sqrt( ( this.player.x - this.spikes[i].x )**2 + ( this.player.y - this.spikes[i].y )**2 );
         
             // collision detected with small offset
             if( D < R - Math.log( R ) ) { collision = true; }
-        });
+        }
         
         // collision ststus
         return collision;
@@ -204,15 +230,24 @@ class Board {
     calcScore = () => {
 
         // calc spikes y
-        this.spikes.forEach( spike => {
+        // this.spikes.forEach( spike => {
             
-            // new unpassed spike detected
-            if( !spike.passed && spike.y > this.player.y + this.player.r ) {
+        //     // new unpassed spike detected
+        //     if( !spike.passed && spike.y > this.player.y + this.player.r ) {
 
-                spike.passed = true;
+        //         spike.passed = true;
+        //         this.gameScore++;
+        //     }
+        // });
+
+        for( let i = 0; i < this.spikes.length; i++ ) {
+
+            if( !this.spikes[i].passed && this.spikes[i].y > this.player.y + this.player.r ) {
+
+                this.spikes[i].passed = true;
                 this.gameScore++;
             }
-        });
+        }
     };
 };
 
