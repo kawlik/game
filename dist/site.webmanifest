@@ -3,7 +3,7 @@
     "short_name": "SPIKE",
 
     "theme_color": "#bbbbbb",
-    "background_color": "#bbbbbb",
+    "background_color": "#fefefe",
 
     "orientation": "portrait",
     "display": "standalone",
