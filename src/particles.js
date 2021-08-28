@@ -171,7 +171,7 @@ class Trace extends Shape {
             if( !this.particles[i] ) { continue; }
             
             ctx.beginPath();
-            ctx.fillStyle = `hsla( ${this.color}, 100%, 50%, ${0.2 * ( this.count / i )} )`;
+            ctx.fillStyle = `hsla( ${this.color}, 100%, 50%, ${0.2 * (( this.count + 1 ) / ( i + 1 ))} )`;
 
             ctx.arc( this.particles[i].x, this.particles[i].y, this.particles[i].r, 0, Math.PI * 2 );
             ctx.fill();
