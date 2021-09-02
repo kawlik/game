@@ -41,16 +41,21 @@ class Wind extends Shape {
         this.speed = speed;
 
         // particles position update
-        // this.particles.forEach( particle => {
 
-        //     // speed aplay
-        //     particle.y += this.speed * particle.speed;
+        /*
 
-        //     // correction
-        //     if (particle.y > particle.r + this.y ) {
-        //         particle.y = -this.y;
-        //     }
-        // });
+        this.particles.forEach( particle => {
+
+            // speed aplay
+            particle.y += this.speed * particle.speed;
+
+            // correction
+            if (particle.y > particle.r + this.y ) {
+                particle.y = -this.y;
+            }
+        });
+
+        */
 
         for( let i = 0; i < this.particles.length; i++ ) {
 
@@ -67,18 +72,22 @@ class Wind extends Shape {
     draw = ( ctx ) => {
 
         // particles draw
-        // this.particles.forEach( particle => {
 
-        //     ctx.beginPath();
+        /*
+        this.particles.forEach( particle => {
 
-        //     ctx.lineWidth = 0.2;
-        //     ctx.fillStyle = this.color;
+            ctx.beginPath();
 
-        //     ctx.moveTo( particle.x, particle.y );
-        //     ctx.lineTo( particle.x, particle.y + particle.r );
+            ctx.lineWidth = 0.2;
+            ctx.fillStyle = this.color;
 
-        //     ctx.stroke();
-        // });
+            ctx.moveTo( particle.x, particle.y );
+            ctx.lineTo( particle.x, particle.y + particle.r );
+
+            ctx.stroke();
+        });
+
+        */
 
         for( let i = 0; i < this.particles.length; i++ ) {
 
@@ -127,14 +136,18 @@ class Trace extends Shape {
         });
 
         // particles position update
-        // this.particles.forEach( particle => {
 
-        //     // size increase
-        //     particle.r += 0.05;
+        /*
+        this.particles.forEach( particle => {
 
-        //     // speed aplay
-        //     particle.y += speed;
-        // });
+            // size increase
+            particle.r += 0.05;
+
+            // speed aplay
+            particle.y += speed;
+        });
+
+        */
 
         for( let i = 0; i < this.particles.length; i++ ) {
 
@@ -157,14 +170,19 @@ class Trace extends Shape {
     draw = ( ctx ) => {
 
         // particles draw
-        // this.particles.forEach( particle => {
 
-        //     ctx.beginPath();
-        //     ctx.fillStyle = `hsla( ${this.color}, 100%, 50%, 0.8 )`;
+        /*
 
-        //     ctx.arc( particle.x, particle.y, particle.r, 0, Math.PI * 2 );
-        //     ctx.fill();
-        // });
+        this.particles.forEach( particle => {
+
+            ctx.beginPath();
+            ctx.fillStyle = `hsla( ${this.color}, 100%, 50%, 0.8 )`;
+
+            ctx.arc( particle.x, particle.y, particle.r, 0, Math.PI * 2 );
+            ctx.fill();
+        });
+
+        */
 
         for( let i = 0; i < this.particles.length; i++ ) {
 

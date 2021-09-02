@@ -1,9 +1,10 @@
 class GameInterface {
 
-    constructor( selector, startCallback ) {
+    constructor( selector, state, startCallback ) {
 
         this.selector = selector;
         this.startCallback = startCallback;
+        this.state = state;
 
         this.elem = null;
 
@@ -31,6 +32,7 @@ class GameInterface {
             this.btnStart.innerHTML = 'play_circle';
 
             // starts listening
+            this.btnConfig.addEventListener( 'click', this.handleConfig );
             this.btnStart.addEventListener( 'click', this.handleStart );
 
             // buttons append
@@ -40,6 +42,11 @@ class GameInterface {
     };
 
     /*   *   *   *   *   *   *   *   */
+
+    handleConfig = () => {
+
+        this.state.setVisible();
+    };
 
     handleStart = () => {
 

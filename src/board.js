@@ -9,26 +9,26 @@ import * as Particles from './particles';
 
 class Board {
 
-    constructor( selector, difficulty = Config.difficulty.medium ) {
+    constructor( selector ) {
 
         this.selector = selector;
-        this.difficulty = difficulty;
-
+        
         this.cvs = null;    // cnvas elem
         this.ctx = null;    // context reference
-
+        
         this.x = null;  // board width
         this.y = null;  // board height
-
+        
         this.player = null; // player object
         this.spikes = null; // spikes array
-
+        
         this.particles = null;  // particles array
-
+        
         this.playerSide = null; // player side variable
         this.spikeSpeed = null; // spike speed variable
         this.spikeCount = null; // spike count variable
-
+        
+        this.difficulty = null; // game dificulty state
         this.activeGame = null; // game active / idle state
         this.gameScore = null;  // game score variable
     };
@@ -58,10 +58,10 @@ class Board {
 
     setUp = () => {
 
-        const { player, particles, color, initial } = Config;
+        const { player, particles, color, difficulty, initial, state } = Config;
 
         // player setup
-        this.player = new Player( initial.player.x, initial.player.y, player.r, color.player );
+        this.player = new Player( initial.player.x, initial.player.y, player.r, state.playerColor || color.player );
         this.playerSide = Utility.randBool();   // random player side drag
 
         // spikes setup
@@ -78,7 +78,12 @@ class Board {
         this.spikeSpeed = 1;    // initial spike speed value
         this.gameScore = 0;     // initial game score
 
+        this.difficulty = state.difficulty || difficulty.medium;   // dificultu setup
+
         this.activeGame = false;    // initial game idle state
+
+        // initial draw
+        this.draw();
     };
 
     /*   *   *   *   *   *   *   *   */
@@ -94,18 +99,28 @@ class Board {
 
         // spikes update
         this.spikes.splice( 10 );
-        // this.spikes.forEach( spike => {
-        //     spike.y += this.spikeSpeed;
-        // });
+
+        /*
+
+        this.spikes.forEach( spike => {
+            spike.y += this.spikeSpeed;
+        });
+
+        */
 
         for( let i = 0; i < this.spikes.length; i++ ) {
             this.spikes[i].y += this.spikeSpeed;
         }
 
         // particles update
-        // this.particles.forEach( particle => {
-        //     particle.update( this.player.x, this.player.y, this.spikeSpeed );
-        // });
+
+        /*
+
+        this.particles.forEach( particle => {
+            particle.update( this.player.x, this.player.y, this.spikeSpeed );
+        });
+
+        */
 
         for( let i = 0; i < this.particles.length; i++ ) {
             this.particles[i].update( this.player.x, this.player.y, this.spikeSpeed );
@@ -121,21 +136,36 @@ class Board {
         this.drawBoard( this.ctx );
 
         // draws particles
-        // this.particles.forEach( particle => {
-        //     particle.draw( this.ctx );
-        // });
-        
-        for( let i = 0; i < this.particles.length; i++ ) {
-            this.particles[i].draw( this.ctx );
+
+        /*
+
+        this.particles.forEach( particle => {
+            particle.draw( this.ctx );
+        });
+
+        */
+
+        // particles draw selection
+        if( Config.state.drawParticles ) {
+
+            for( let i = 0; i < this.particles.length; i++ ) {
+                this.particles[i].draw( this.ctx );
+            }
         }
+        
 
         // draws player
         this.player.draw( this.ctx );
         
         // draws spikes
-        // this.spikes.forEach( spike => {
-        //     spike.draw( this.ctx );
-        // });
+
+        /*
+
+        this.spikes.forEach( spike => {
+            spike.draw( this.ctx );
+        });
+
+        */
 
         for( let i = 0; i < this.spikes.length; i++ ) {
             this.spikes[i].draw( this.ctx );
@@ -154,16 +184,20 @@ class Board {
 
         // collison change
         let collision = false;
+
+        /*
         
-        // this.spikes.forEach( spike => {
+        this.spikes.forEach( spike => {
         
-        //     const R = this.player.r + spike.r;
+            const R = this.player.r + spike.r;
         
-        //     const D = Math.sqrt( ( this.player.x - spike.x )**2 + ( this.player.y - spike.y )**2 );
+            const D = Math.sqrt( ( this.player.x - spike.x )**2 + ( this.player.y - spike.y )**2 );
         
-        //     // collision detected with small offset
-        //     if( D < R - Math.log( R ) ) { collision = true; }
-        // });
+            // collision detected with small offset
+            if( D < R - Math.log( R ) ) { collision = true; }
+        });
+
+        */
 
         for( let i = 0; i < this.spikes.length; i++ ) {
             
@@ -230,15 +264,20 @@ class Board {
     calcScore = () => {
 
         // calc spikes y
-        // this.spikes.forEach( spike => {
-            
-        //     // new unpassed spike detected
-        //     if( !spike.passed && spike.y > this.player.y + this.player.r ) {
 
-        //         spike.passed = true;
-        //         this.gameScore++;
-        //     }
-        // });
+        /*
+
+        this.spikes.forEach( spike => {
+            
+            // new unpassed spike detected
+            if( !spike.passed && spike.y > this.player.y + this.player.r ) {
+
+                spike.passed = true;
+                this.gameScore++;
+            }
+        });
+
+        */
 
         for( let i = 0; i < this.spikes.length; i++ ) {
 

@@ -1,6 +1,9 @@
 import Board from './board';
 import Score from './score';
+import State from './state';
 import GameInterface from './gameInterface';
+
+import Config from './config';
 
 /*   *   *   *   *   *   *   *   *   *   */
 
@@ -17,8 +20,11 @@ class App {
         // game score
         this.score = new Score( '#score' );
 
+        // game state
+        this.state = new State( '#state', this.board.setUp );
+
         // game interface & animation link
-        this.interface = new GameInterface( '#interface', this.startAnimate );
+        this.interface = new GameInterface( '#interface', this.state, this.startAnimate );
     };
 
     /*   *   *   *   *   *   *   *   */
@@ -31,12 +37,14 @@ class App {
         // score mechanism init
         this.score.init();
 
+        // state mechanism init
+        this.state.init();
+
         // interfae init
         this.interface.init();
 
         // initial board draw
         this.board.draw();
-
     };
 
     /*   *   *   *   *   *   *   *   */
@@ -48,9 +56,12 @@ class App {
 
         const animationLoop = () => {
 
-            // new animation request
-            this.requestID = requestAnimationFrame( animationLoop );
-            // this.requestID = setTimeout( animationLoop, 1000 / 60 );
+            // smoth render 
+            if( Config.state.useSmothRender ) {
+
+                // new animation request
+                this.requestID = requestAnimationFrame( animationLoop );
+            }
 
             // proper animation draw
             this.board.update();
@@ -63,9 +74,17 @@ class App {
             if( this.board.isCollision() ) { this.stopAnimate(); }
         }
 
-        this.requestID = requestAnimationFrame( animationLoop );
-        // this.requestID = setTimeout( animationLoop, 1000 / 60 );
-        // this.requestID = setInterval( animationLoop, 1000 / 60 );
+        // render method select
+        if( Config.state.useSmothRender ) {
+
+            // smoth render RAF
+            this.requestID = requestAnimationFrame( animationLoop );
+
+        } else {
+
+            // stable render Interval
+            this.requestID = setInterval( animationLoop, 1000 / 60 );
+        }
     };
 
     stopAnimate = () => {
@@ -80,9 +99,16 @@ class App {
         this.interface.restore();
 
         // cancels next animation frame
-        cancelAnimationFrame( this.requestID );
-        // clearTimeout( this.requestID );
-        // clearInterval( this.requestID );
+        if( Config.state.useSmothRender ) {
+
+            // smoth render RAF
+            cancelAnimationFrame( this.requestID );
+
+        } else {
+
+            // stable render Interval
+            clearInterval( this.requestID );
+        }
     };
 };
 

@@ -70,7 +70,7 @@ main {
     flex-direction: row;
     
     transform: translateX( -50% ) translateY( -50% );
-    transition: all ease-in-out 0.4s;
+    transition: all 0.3s ease-in-out;
 }
 
 #interface.hidden {
@@ -91,6 +91,164 @@ main {
 
 /*   *   *   *   *   *   *   *   *   *   */
 
+#state {
+
+    position: absolute;
+    z-index: 200;
+    left: 50%;
+    top: 50%;
+
+    gap: 20px;
+    
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+
+    width: 90%;
+    height: 90%;
+
+    transform: translateX( -50% ) translateY( -50% );
+    transition: all 0.3s ease-in-out;
+
+    background-color: rgba( 223, 223, 223, 0.9 );
+    border: 1px solid rgba( 207, 207, 207, 0.9 );
+    border-radius: 20px;
+}
+
+#state.hidden {
+
+    opacity: 0;
+    transform: translateX( 100% ) translateY( -100% ) scale( 0 );
+}
+
+#state .btnClose {
+
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    font-size: 32px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+    color: #787878;
+}
+
+#state .btnReset {
+
+    position: absolute;
+    right: 40px;
+    top: 5px;
+
+    font-size: 32px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+    color: #787878;
+}
+
+#state .preRef {
+
+    width: 100%;
+
+    font-size: 28px;
+    font-weight: 100;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#state .preRef .ref {
+
+    display: block;
+    margin: auto;
+}
+
+#state .preRef .ref {
+
+    outline: none;
+}
+
+
+#state .preRef.difficulty .ref {
+
+    font-size: 16px;
+    font-weight: 100;
+    text-transform: uppercase;
+    text-align: center;
+
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#state .preRef.playerColor .ref {
+
+    border-radius: 15px;
+    background-color: transparent;
+    border: none;
+
+    height: 30px;
+    width: 235px;
+}
+
+#state .preRef input[type=checkbox] {
+    
+    height: 35px;
+    width: 80px;
+
+    visibility: collapse;
+    position: relative;
+}
+
+#state .preRef input[type=checkbox]::before {
+
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translateX( -50% ) translateY( -50% );
+    transition: all 0.3s ease-in-out;
+
+    height: 100%;
+    width: 100%;
+
+    border-radius: 20px;
+    border: 1px solid #cccccc;
+    background-color: white;
+    visibility: visible;
+}
+
+#state .preRef input[type=checkbox]::after {
+
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translateX( 50% ) translateY( -50% );
+    transition: all 0.3s ease-in-out;
+
+    height: 25px;
+    width: 25px;
+
+    border-radius: 20px;
+    background-color: #dc3545;
+    visibility: visible;
+}
+
+#state .preRef input[type=checkbox]:checked:after {
+    transform: translateX( -150% ) translateY( -50% );
+    background-color: #198754;
+}
+
+/*   *   *   *   *   *   *   *   *   *   */
+
 #score {
 
     position: absolute;
@@ -107,24 +265,24 @@ main {
     transform: translateX( -50% ) translateY( -50% );
 }
 
-#score div {
+#score .preRef {
 
     font-weight: 100;
     text-transform: uppercase;
     text-align: center;
 }
 
-#score div .ref {
+#score .preRef .ref {
     display: block;
 }
 
-#score div.currScore {
+#score .preRef.currScore {
 
     color: #343434;
     font-size: 48px;
 }
 
-#score div.highScore {
+#score .preRef.highScore {
 
     color: #787878;
     font-size: 32px;

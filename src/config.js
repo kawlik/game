@@ -63,9 +63,21 @@ const Config = {
     // difficulty levels
     difficulty: {
 
-        easy: 300,
-        medium: 225,
-        hard: 150,
+        easy: 400,
+        medium: 300,
+        hard: 200,
+    },
+
+    // state values
+    state: {
+
+        // game setings
+        difficulty: null,
+        playerColor: null,
+
+        // optimization settings
+        drawParticles: true,
+        useSmothRender: true,
     },
 };
 
