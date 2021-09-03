@@ -63,8 +63,8 @@ const Config = {
     // difficulty levels
     difficulty: {
 
-        easy: 400,
-        medium: 300,
+        easy: 350,
+        medium: 275,
         hard: 200,
     },
 

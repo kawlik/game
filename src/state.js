@@ -110,7 +110,7 @@ class State {
             
             this.elem.append( this.btnClose );
             this.elem.append( this.btnReset );
-            
+
             // initial setup
             this.setUp();
             this.update();
@@ -143,24 +143,27 @@ class State {
         // saves state
         this.saveState();
 
-        // draw callback
+        // sets proper values
+        this.setProperValue();
+
+        // sets up board
         this.boardSetUpCallback();
     };
 
     setVisible = () => {
-        this.elem.classList.remove( 'hidden' );
+        this.elem.classList.add( 'visible' );
     };
 
     setHidden = () => {
-        this.elem.classList.add( 'hidden' );
+        this.elem.classList.remove( 'visible' );
     };
 
     setReset = () => {
 
         this.difficultyVal = Config.difficulty.medium;
         this.playerColorVal = Config.color.player;
-        this.drawParticlesVal = Config.state.drawParticles;
-        this.useSmothRenderVal = Config.state.useSmothRender;
+        this.drawParticlesVal = true;
+        this.useSmothRenderVal = true;
 
         this.update();
     }

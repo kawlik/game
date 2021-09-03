@@ -117,15 +117,18 @@ main {
 
     transition: all 0.3s ease-in-out;
 
+    opacity: 0;
+    transform: scale( 0 );
+
     background-color: rgba( 223, 223, 223, 0.9 );
     border: 1px solid rgba( 207, 207, 207, 0.9 );
     border-radius: 20px;
 }
 
-#state.hidden {
+#state.visible {
 
-    opacity: 0;
-    transform: scale( 0 );
+    opacity: 1;
+    transform: scale( 1 );
 }
 
 #state .btnClose {
